@@ -5,7 +5,8 @@ version: 0.1.0
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 # Default for running on Splitgraph Cloud
-profile: splitgraph
+#profile: splitgraph
+#profile: ''
 
 models:
   stripe_source:
@@ -23,20 +24,21 @@ vars:
   using_payment_method: False
 
   stripe_source:
-    balance_transaction: '{{ ref(''ab2ft_stripe_balance_transaction'') }}'
-    card: '{{ ref(''ab2ft_stripe_card'') }}'
-    charge: '{{ ref(''ab2ft_stripe_charge'') }}'
-    customer: '{{ ref(''ab2ft_stripe_customer'') }}'
-    fee: '{{ ref(''ab2ft_stripe_fee'') }}'
-    payment_intent: '{{ ref(''ab2ft_stripe_payment_intent'') }}'
+    balance_transaction: 'stripe_balance_transactions'
+    card: 'stripe_charges_card'
+    charge: 'stripe_charges'
+    customer: "stripe_customers"
+    # ???
+    fee: 'stripe_fees'
+    payment_intent: 'stripe_payment_intents'
     payment_method_card: '{{ ref(''ab2ft_stripe_payment_method_card'') }}'
     payment_method: '{{ ref(''ab2ft_stripe_payment_method'') }}'
-    payout: '{{ ref(''ab2ft_stripe_payout'') }}'
-    refund: '{{ ref(''ab2ft_stripe_refund'') }}'
-    invoice_line_item: '{{ ref(''ab2ft_stripe_invoice_line_item'') }}'
-    invoice: '{{ ref(''ab2ft_stripe_invoice'') }}'
-    subscription: '{{ ref(''ab2ft_stripe_subscription'') }}'
-    plan: '{{ ref(''ab2ft_stripe_plan'') }}'
+    payout: 'stripe_payouts'
+    refund: 'stripe_refunds'
+    invoice_line_item: 'stripe_invoice_line_items'
+    invoice: 'stripe_invoices'
+    subscription: 'stripe_subscriptions'
+    plan: 'stripe_plans'
     credit_note: '{{ ref(''ab2ft_stripe_credit_note'') }}'
     credit_note_line_item: '{{ ref(''ab2ft_stripe_credit_note_line_item'') }}'
 
